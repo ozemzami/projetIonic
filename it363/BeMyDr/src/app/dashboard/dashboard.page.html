@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        Welcome to Be My Doctor!
+      </ion-col>
+    </ion-row>
+    <input ion-text type="text" [(ngModel)]="question">
+
+  <button ion-button (click)="ask(question)">
+    Ask
+  </button>
+
+  <div>
+    {{answer}}
+  </div>
+  </ion-grid>  
+
+  
+  
+  
+</ion-content>
+<ion-footer (click)="logout()">
+  <ion-toolbar color="secondary">
+    <ion-title>Log out</ion-title>
+  </ion-toolbar>
+</ion-footer>
+
