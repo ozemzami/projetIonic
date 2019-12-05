@@ -1,8 +1,9 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { NavController, ModalController, Platform } from '@ionic/angular';
 import { AuthenticateService } from '../services/authentication.service';
-
-declare var ApiAIPromises: any;
+import {  ChatbotService, Message } from '../services/chatbot.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/scan';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,39 +12,23 @@ declare var ApiAIPromises: any;
 })
 export class DashboardPage implements OnInit {
 
-  userEmail: string;
-  answer: string;
-
+  messages: Observable<Message[]>;
+  formValue: string;
   constructor(
-    public platform: Platform, 
-    public ngZone: NgZone,
     private navCtrl: NavController,
-    private authService: AuthenticateService
-    ) {
-      platform.ready().then(() => {
-        ApiAIPromises.init({
-          clientAccessToken: 'b6c69c510be742a09ad5aa6404566dc6'
-        }).then(result => console.log(result));
-      });
-  }
+    private authService: AuthenticateService,
+    private chat: ChatbotService
+    ) {}
 
   ngOnInit() {
-    if (this.authService.userDetails()){
-      this.userEmail = this.authService.userDetails().email;
-    } else {
-      this.navCtrl.navigateBack('');
-    }
+    // appends to array after each new message is added to feedSource
+    this.messages = this.chat.conversation.asObservable()
+      .scan((acc, val) => acc.concat(val) );
   }
 
-  ask(question) {
-    ApiAIPromises.requestText({
-      query: question
-    })
-    .then(({result: {fulfillment: {speech}}}) => {
-       this.ngZone.run(() => {
-         this.answer = speech;
-       });
-    });
+  sendMessage() {
+    this.chat.converse(this.formValue);
+    this.formValue = '';
   }
 
   logout() {

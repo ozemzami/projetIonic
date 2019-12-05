@@ -12,6 +12,9 @@ export const environment = {
     storageBucket: 'bemydr-45897.appspot.com',
     messagingSenderId: '970942381628',
     appId: '1:970942381628:web:9c619521220b61f6cb4d39'
+  },
+  dialogflow: {
+    chatbot: 'b6c69c510be742a09ad5aa6404566dc6'
   }
  };
 

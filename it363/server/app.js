@@ -1,8 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const symptoms = require('./symptoms.json');
-const risk = require('./risk_factors.json');
-const conditions = require('./conditions.json');
+const symptoms = require("./symptoms.json");
+const risk = require("./risk_factors.json");
+const conditions = require("./conditions.json");
 require("colors");
 
 const app = express();
@@ -23,23 +23,31 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/symptoms', (req, res, next) => {
+app.post("/symptoms", (req, res, next) => {
+  console.log("REQUEST".magenta, req.body);
   let symptom = req.body.symptom;
-  for(let i = 0; i < symptoms.length; i++) {
-    if(symptoms[i].name == symptom) {
-      res.status(200).json({
-        id: symptoms[i].id
-      });
+  let result = undefined;
+  for (let i = 0; i < symptoms.length; i++) {
+    if (symptoms[i].name == symptom) {
+      result = symptoms[i].id;
     }
   }
-  //res.status(500).send("error");
+  if (result == undefined) {
+    res.status(404).json({
+      error: "symptom not found"
+    });
+  } else {
+    res.status(200).json({
+      id: result
+    });
+  }
 });
-app.get('/ris-factors', (req, res, next) => {
+app.get("/risk-factors", (req, res, next) => {
   res.status(200).send(risk);
 });
-app.get('/conditions', (req, res, next) => {
+app.get("/conditions", (req, res, next) => {
   res.status(200).send(conditions);
-})
+});
 
 app.use((req, res, next) => {
   const error = new Error("Not Found");

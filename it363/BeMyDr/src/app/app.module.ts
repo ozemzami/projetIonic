@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 
 import { environment } from 'src/environments/environment';
 import { AuthenticateService } from './services/authentication.service';
+import {  ChatbotService } from './services/chatbot.service';
+
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +28,7 @@ firebase.initializeApp(environment.firebase);
     StatusBar,
     SplashScreen,
     AuthenticateService,
+    ChatbotService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
