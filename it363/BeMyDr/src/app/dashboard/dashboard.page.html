@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Dashboard</ion-title>
+    <ion-title>Welcome to BeMyDr</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,14 +15,11 @@
   
   <label for="nameField">Your Message</label>
   
+  
   <input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
   <button (click)="sendMessage()">Send</button>
+  <button ion-button (click)="start()">Record</button>
 
-  <ng-container *ngFor="let answer of answers | async">
-    <div class="answer" >
-    {{ answer }}
-    </div>
-  </ng-container>
 </ion-content>
 
 <ion-footer (click)="logout()">
