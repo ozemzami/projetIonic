@@ -55,7 +55,8 @@ export class DashboardPage implements OnInit {
         (matches: Array<string>) => {
           console.log(matches);
           this.formValue = matches[0];
-          alert(this.formValue);
+          this.chat.converse(this.formValue);
+          this.formValue = '';
         }
       );
   }
@@ -63,6 +64,10 @@ export class DashboardPage implements OnInit {
   sendMessage() {
     this.chat.converse(this.formValue);
     this.formValue = '';
+  }
+
+  recap() {
+    this.navCtrl.navigateForward('/recap');
   }
 
   logout() {

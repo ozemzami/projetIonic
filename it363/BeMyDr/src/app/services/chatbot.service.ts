@@ -18,7 +18,6 @@ export class ChatbotService {
   readonly client = new ApiAiClient({accessToken: this.token});
 
   conversation = new BehaviorSubject<Message[]>([]);
-  speech = '';
 
   constructor() { }
 
@@ -36,6 +35,18 @@ export class ChatbotService {
   converse(msg: string) {
     const userMessage = new Message(msg, 'user');
     this.update(userMessage);
+
+    var options = {
+      sessionId: 'session______id',
+      resetContexts: true,
+      contexts: [{
+          name: 'suggested_phase-followup',
+          lifespan: 40,
+          parameters: {
+              username: 'Ayman',
+          }
+      }]
+  }
 
 
     return this.client.textRequest(msg)

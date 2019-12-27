@@ -14,7 +14,7 @@ export const environment = {
     appId: '1:970942381628:web:9c619521220b61f6cb4d39'
   },
   dialogflow: {
-    chatbot: 'b6c69c510be742a09ad5aa6404566dc6'
+    chatbot: '455984fb1c124a06916f5c16d5ef2d46'
   }
  };
 

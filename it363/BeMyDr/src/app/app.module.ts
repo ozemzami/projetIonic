@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { AuthenticateService } from './services/authentication.service';
 import {  ChatbotService } from './services/chatbot.service';
+import {  RecapService } from './services/recap.service';
 
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
@@ -32,6 +33,7 @@ firebase.initializeApp(environment.firebase);
     SplashScreen,
     AuthenticateService,
     ChatbotService,
+    RecapService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

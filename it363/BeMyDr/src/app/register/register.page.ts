@@ -40,6 +40,8 @@ export class RegisterPage implements OnInit {
         Validators.minLength(5),
         Validators.required
       ])),
+      firstname: new FormControl(''),
+      lastname: new FormControl('')
     });
   }
 
