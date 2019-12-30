@@ -1,0 +1,8 @@
+<ion-content class="ion-padding">
+
+  <ion-item *ngFor="let item of histories">
+    <button (click)="getDateDiagnosis(item.Id)">{{ item.Id }}</button>
+  </ion-item>
+
+
+</ion-content>

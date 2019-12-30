@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ApiAiClient } from 'api-ai-javascript/es6/ApiAiClient';
+import * as firebase from 'firebase/app';
 
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -36,20 +37,20 @@ export class ChatbotService {
     const userMessage = new Message(msg, 'user');
     this.update(userMessage);
 
-    var options = {
+    const options = {
       sessionId: 'session______id',
       resetContexts: true,
       contexts: [{
-          name: 'suggested_phase-followup',
+          name: 'suggested_symptoms',
           lifespan: 40,
           parameters: {
               username: 'Ayman',
           }
       }]
-  }
+    };
 
 
-    return this.client.textRequest(msg)
+    return this.client.textRequest(msg,  options)
       .then(res => {
         const speech = res.result.fulfillment.speech;
         const botMessage = new Message(speech, 'bot');

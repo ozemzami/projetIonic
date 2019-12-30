@@ -7,11 +7,13 @@ import { RecapService } from '../services/recap.service';
   styleUrls: ['./recap.page.scss'],
 })
 export class RecapComponent implements OnInit {
-
+  info = '';
   constructor( private recapService: RecapService) { }
 
   ngOnInit() {
-    this.recapService.getUserData();
+    this.recapService.getUserData().then(res => {
+      this.info = res;
+    });
   }
 
 }

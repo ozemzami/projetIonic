@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
+import {AuthCredential} from '@firebase/auth-types';
 @Injectable()
 export class AuthenticateService {
   constructor() {}
 
-  writeUserData(first, last, email) {
-    firebase.database().ref('users/').push().set({
+  writeUserData(first, last, email, userRecord, old, sexe) {
+    firebase.database().ref('/users/' + userRecord + '/infos').set({
       firstname: first,
       lastname: last,
-      mail: email
+      mail: email,
+      age: old,
+      sex: sexe
+    });
+    firebase.database().ref('/users/' + userRecord + '/infos/user_preferences').set({
+      nb_diseases: 3,
+      nb_questions: 9,
     });
   }
 
@@ -16,8 +23,9 @@ export class AuthenticateService {
    return new Promise<any>((resolve, reject) => {
      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
      .then(res => {
-      this.writeUserData(value.firstname, value.lastname, value.email);
-      resolve(res);
+        console.log(firebase.auth().currentUser.uid);
+        this.writeUserData(value.firstname, value.lastname, value.email, firebase.auth().currentUser.uid, value.old, value.sexe);
+        resolve(res);
      })
      .catch(err => {
       reject(err);

@@ -70,6 +70,10 @@ export class DashboardPage implements OnInit {
     this.navCtrl.navigateForward('/recap');
   }
 
+  history() {
+    this.navCtrl.navigateForward('/history');
+  }
+
   logout() {
     this.authService
       .logoutUser()

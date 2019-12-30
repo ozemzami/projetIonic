@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBbCBb5fuhpvjf_CUY1EBeeqFwxz9FezXo',
-    authDomain: 'bemydr-45897.firebaseapp.com',
-    databaseURL: 'https://bemydr-45897.firebaseio.com',
-    projectId: 'bemydr-45897',
-    storageBucket: 'bemydr-45897.appspot.com',
-    messagingSenderId: '970942381628',
-    appId: '1:970942381628:web:9c619521220b61f6cb4d39'
+    apiKey: 'AIzaSyB2Cd5iUwTouZLKn-QZGGWJ_wmnWKwHOQc',
+  authDomain: 'infermedica-dialog-vghdef.firebaseapp.com',
+  databaseURL: 'https://infermedica-dialog-vghdef.firebaseio.com',
+  projectId: 'infermedica-dialog-vghdef',
+  storageBucket: 'infermedica-dialog-vghdef.appspot.com',
+  messagingSenderId: '1014284069404',
+  appId: '1:1014284069404:web:df628fb91b5d1af6cb8dd9'
   },
   dialogflow: {
     chatbot: '455984fb1c124a06916f5c16d5ef2d46'

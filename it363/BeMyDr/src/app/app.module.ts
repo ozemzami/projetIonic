@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 import { AuthenticateService } from './services/authentication.service';
 import {  ChatbotService } from './services/chatbot.service';
 import {  RecapService } from './services/recap.service';
+import {  HistoryService } from './services/history.service';
 
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
@@ -34,6 +35,7 @@ firebase.initializeApp(environment.firebase);
     AuthenticateService,
     ChatbotService,
     RecapService,
+    HistoryService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
