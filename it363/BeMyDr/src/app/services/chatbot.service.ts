@@ -32,23 +32,33 @@ export class ChatbotService {
     this.conversation.next([msg]);
   }
 
+  getUsername() {
+    const userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
+      const tmp = JSON.stringify(snapshot.val());
+      return JSON.parse(tmp);
+    });
+  }
+
   // Sends and receives messages via dialogflow
-  converse(msg: string) {
+  async converse(msg: string) {
     const userMessage = new Message(msg, 'user');
     this.update(userMessage);
 
+    const user = await this.getUsername();
+
     const options = {
       sessionId: 'session______id',
-      resetContexts: true,
+      resetContexts: false,
       contexts: [{
           name: 'suggested_symptoms',
           lifespan: 40,
           parameters: {
-              username: 'Ayman',
+             // username: user.infos.firstname,
+             username: 'Ayman',
           }
       }]
     };
-
 
     return this.client.textRequest(msg,  options)
       .then(res => {
