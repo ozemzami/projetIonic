@@ -8,7 +8,7 @@ export class RecapService {
 
   getUserData() {
     const userId = firebase.auth().currentUser.uid;
-    return firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
+    return firebase.database().ref('/' + userId).once('value').then((snapshot) => {
       return JSON.stringify(snapshot.val());
     });
   }

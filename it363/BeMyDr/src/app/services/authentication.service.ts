@@ -6,14 +6,14 @@ export class AuthenticateService {
   constructor() {}
 
   writeUserData(first, last, email, userRecord, old, sexe) {
-    firebase.database().ref('/users/' + userRecord + '/infos').set({
+    firebase.database().ref('/' + userRecord + '/infos').set({
       firstname: first,
       lastname: last,
       mail: email,
       age: old,
       sex: sexe
     });
-    firebase.database().ref('/users/' + userRecord + '/infos/user_preferences').set({
+    firebase.database().ref('/' + userRecord + '/infos/user_preferences').set({
       nb_diseases: 3,
       nb_questions: 9,
     });

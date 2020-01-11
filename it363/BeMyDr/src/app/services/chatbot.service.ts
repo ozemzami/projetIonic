@@ -34,9 +34,10 @@ export class ChatbotService {
 
   getUsername() {
     const userId = firebase.auth().currentUser.uid;
-    return firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
+    return firebase.database().ref('/' + userId).once('value').then((snapshot) => {
       const tmp = JSON.stringify(snapshot.val());
-      return JSON.parse(tmp);
+      // return JSON.parse(tmp);
+      return userId;
     });
   }
 
@@ -55,7 +56,8 @@ export class ChatbotService {
           lifespan: 40,
           parameters: {
              // username: user.infos.firstname,
-             username: 'Ayman',
+             // username: 'Ayman',
+             username: user
           }
       }]
     };
